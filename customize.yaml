@@ -1,0 +1,47 @@
+#################################################################
+## Customize
+#################################################################
+
+        ##########################################################
+        ##  Doors
+        ##########################################################
+
+#  cover.garage_door:
+#    icon: mdi:garage
+#    homebridge_cover_type: garage_door
+#  cover.wink_garage_door:
+#    icon: mdi:car
+#    homebridge_cover_type: garage_door
+#    homebridge_hidden: true
+#    friendly_name: Garage Door
+#  cover.myq:
+#    homebridge_hidden: true
+#  binary_sensor.front_door_opened:
+#    friendly_name: Front Door
+#    icon: mdi:door
+#  binary_sensor.back_door_opened:
+#    friendly_name: Back Door
+#    icon: mdi:door
+#  binary_sensor.basement_door_opened:
+#    friendly_name: Basement Door
+#    icon: mdi:door
+
+
+        ##########################################################
+        ## Door Bell
+        ##########################################################
+
+  binary_sensor.ring_front_door_ding:
+    icon: mdi:bell-ring
+    friendly_name: Front Door Ring
+#    homebridge_hidden: true
+#  binary_sensor.ring_front_door_motion:
+#    homebridge_hidden: true
+#  binary_sensor.front_door_motion:
+#    homebridge_hidden: true
+  sensor.ring_front_door_battery:
+    friendly_name: Door Bell
+  sensor.ring_front_door_last_ding:
+    friendly_name: Front Door Last Ring
+
+

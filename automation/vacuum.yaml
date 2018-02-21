@@ -1,0 +1,46 @@
+#################################################################
+## Vacuum Automations
+#################################################################
+
+- alias: Upstairs Vacuum Start
+ 
+  trigger:
+    - payload: 'on'
+      platform: mqtt
+      topic: smartthings/Upstairs Vacuum/switch/state = on
+  
+  action:
+    - service: vacuum.turn_on
+
+  condition: []
+  id: '1512866081521'
+
+
+- alias: Upstairs Vacuum Stop
+
+  trigger:
+    - payload: 'off'
+      platform: mqtt
+      topic: smartthings/Upstairs Vacuum/switch/stat = off
+
+  action:
+    - service: vacuum.turn_off
+
+  condition: []
+  id: '1512866170354'
+
+
+#- alias: Upstairs Vacuum Pause Resume
+
+#  trigger:
+#    - payload: 'on'
+#      platform: mqtt
+#      topic: smartthings/Upstairs Vacuum/switch
+
+#  action:
+#    - service: vacuum.start_pause
+
+#  condition: []
+#  id: '1512866225871'
+
+

@@ -1,0 +1,171 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: 37.9207
+  longitude: -84.4177
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 306
+  # metric for Metric, imperial for Imperial
+  unit_system: imperial
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: America/New_York
+  # Customization file
+  customize: !include customize.yaml
+
+# Show links to resources in log and frontend
+introduction:
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+http:
+  # Secrets are defined in the file secrets.yaml
+  # api_password: !secret http_password
+  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+  # base_url: example.duckdns.org:8123
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+# Weather prediction
+#sensor:
+#  - platform: yr
+
+# Text to speech
+tts:
+  - platform: google
+
+#apple_tv:
+#  - name: Living Room Apple TV
+#    host: REDACTED.150
+#    login_id: REDACTED
+#    start_off: false
+#  - name: Guest Bedroom Apple TV
+#    host: REDACTED.153
+#    login_id: REDACTED
+#    start_off: false
+
+#remote:
+#  - platform: harmony
+#    name: Media Center
+#    host: REDACTED.109
+#  - platform: harmony
+#    name: Bedroom TV
+#    host: REDACTED.247
+
+#switch:
+#  - platform: tplink
+#    host: REDACTED.114
+#    name: MyQ Garage Outlet
+
+#ifttt:
+#  key: REDACTED
+
+
+light:
+  - platform: mqtt
+    name: "Bedroom Light"
+    state_topic: "smartthings/Bedroom Light/switch/state"
+    command_topic: "smartthings/Bedroom Light/switch/cmd"
+    brightness_state_topic: "smartthings/Bedroom Light/level/state"
+    brightness_command_topic: "smartthings/Bedroom Light/level/cmd"
+    payload_on: "on"
+    payload_off: "off"
+    retain: true
+
+vacuum:
+  - platform: xiaomi_miio
+    host: !secret vacuum_upstairs_ip
+    name: upstairs_vacuum
+    token: !secret vacuum_upstairs_token
+  - platform: xiaomi_miio
+    host: !secret vacuum_downstairs_ip
+    name: downstairs_vacuum
+    token: !secret vacuum_downstairs_token
+
+ecobee:
+  api_key: !secret ecobee_api_key
+
+nest:
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_client_secret
+
+mqtt:
+  broker: !secret mqtt_broker
+  protocol: 3.1
+  keepalive: 60
+  client_id: hass
+  discovery: true
+  discovery_prefix: smartthings
+  username: cconner
+  password: cconner
+
+ring:
+  username: !secret ring_username
+  password: !secret ring_password
+
+#camera:
+# ffmpeg Crashing Docker Container // Removing until resolved
+#  - platform: ring
+#    entity_namespace: ring
+#    scan_interval: 60
+#  - platform: ffmpeg
+#    input: http://REDACTED/rtplive/REDACTED/playlist.m3u8
+#    name: REDACTED
+#    extra_arguments: '-headers "X-ForREDACTEDed-For: REDACTED"'
+
+ 
+ffmpeg:
+
+binary_sensor:
+  - platform: ring
+    monitored_conditions:
+      - ding
+      - motion
+
+
+#################################################################
+## Includes
+#################################################################
+
+automation: !include automations.yaml
+#automation: !include_dir_merge_list automation
+#recorder: !include recorder.yaml
+#logbook: !include logbook.yaml
+#logger: !include logger.yaml
+logger:
+  default: warning
+  logs:
+    homeassistant.components.mqtt: debug
+history: !include history.yaml
+zone: !include zones.yaml
+group: !include groups.yaml
+scene: !include scenes.yaml
+sensor: !include sensors.yaml
+#input_boolean: !include input_boolean.yaml
+#input_select: !include input_select.yaml
+script: !include scripts.yaml
+#weblink: !include weblinks.yaml
+

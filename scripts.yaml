@@ -1,0 +1,52 @@
+#################################################################
+## Scripts
+#################################################################
+
+        ##########################################################
+        ## Vacuum
+        ##########################################################
+
+#wait_template: "{{ states.vacuum.miepmiep.attributes.status == 'Idle'}}"
+
+
+        ##########################################################
+        ## Harmony Remote
+        ##########################################################
+
+#input_select_harmony:
+#  alias: "Start Remote activity from input select"
+#  sequence:
+#      service: remote.turn_on
+#      data_template:
+#        entity_id: remote.media_center
+#        activity: >
+#          {% if is_state("input_select.remote", "PowerOff") %}
+#              -1
+#          {% elif is_state("input_select.remote", "Watch TV") %}
+#              22106204
+#          {% elif is_state("input_select.remote", "Watch Over the Air TV") %}
+#              22109519
+#          {% elif is_state("input_select.remote", "Play Xbox One") %}
+#              22107236
+#          {% elif is_state("input_select.remote", "Play Nintendo Switch") %}
+#              23666878
+#          {% elif is_state("input_select.remote", "Play Wii U") %}
+#              22107302
+#          {% elif is_state("input_select.remote", "Play Sonos") %}
+#              22815026
+#          {% elif is_state("input_select.remote", "Turn on Receiver") %}
+#              22107111
+#          {% endif %}
+#
+#input_select_bedroom_harmony:
+#  alias: "Start Bedroom Remote activity from input select"
+#  sequence:
+#      service: remote.turn_on
+#      data_template:
+#        entity_id: remote.bedroom_tv
+#        activity: >
+#          {% if is_state("input_select.bedroom_remote", "PowerOff") %}
+#              -1
+#          {% elif is_state("input_select.bedroom_remote", "Watch TV") %}
+#              31071991
+#          {% endif %}

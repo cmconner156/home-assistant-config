@@ -1,0 +1,7 @@
+#################################################################
+## Groups
+#################################################################
+
+  Door Bell:
+    - binary_sensor.ring_front_door_ding
+    - binary_sensor.ring_front_door_motion

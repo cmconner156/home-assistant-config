@@ -1,0 +1,54 @@
+#################################################################
+## Input Select
+#################################################################
+
+#  holiday:
+#    name: Holiday Lighting
+#    options:
+#      - None
+#      - Valentine's Day
+#      - St. Patrick's Day
+#      - Easter
+#      - Memorial Day
+#      - Independence Day
+#      - Labor Day
+#      - Halloween
+#      - Veterans Day
+#      - Thanksgiving
+#      - Christmas
+#      - Cardinals Game
+#      - Blues Game
+#    icon: mdi:gift
+
+#  remote:
+#    name: Media Center Remote
+#    options:
+#      - PowerOff
+#      - Watch TV
+#      - Watch Over the Air TV
+#      - Play Xbox One
+#      - Play Nintendo Switch
+#      - Play Wii U
+#      - Play Sonos
+#      - Turn on Receiver
+#    icon: mdi:remote
+
+#  bedroom_remote:
+#    name: Bedroom Remote
+#    options:
+#      - PowerOff
+#      - Watch TV
+#    icon: mdi:remote
+
+#  sonos:
+#    name: Sonos
+#    options:
+#      - None
+#      - Play Pop Music
+#      - Play Jazz Music
+#      - Play Chill Music
+#      - Play Electronic Music
+#      - Play Classical Music
+#      - Play Adele Music Station
+#    icon: mdi:speaker
+

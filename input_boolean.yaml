@@ -1,0 +1,11 @@
+##############################################################
+## Input Boolean  ##
+##############################################################
+
+#  enable_security:
+#    name: Alarm Enabled
+#    icon: mdi:shield-outline
+#
+#  disable_lock_unlock_doors:
+#    name: Disable Lock Automation
+#    icon: mdi:lock-plus

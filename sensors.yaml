@@ -1,0 +1,129 @@
+#################################################################
+## Sensors
+#################################################################
+#
+#
+  - platform: template
+    name: UpstairsVacuum
+    sensors:
+      upstairs_vacuum_status: 
+        value_template: "{{ states.vacuum.upstairs_vacuum.attributes['status'] }}"
+        friendly_name: "Status"
+        icon_template: mdi:information 
+      upstairs_vacuum_error: 
+        value_template: "{{ states.vacuum.upstairs_vacuum.attributes['error'] }}"
+        friendly_name: "Error"
+        icon_template: mdi:information 
+      upstairs_vacuum_fan: 
+        value_template: "{{ states.vacuum.upstairs_vacuum.attributes['fan_speed'] }}"
+        friendly_name: "Fan"
+        icon_template: mdi:fan
+      upstairs_vacuum_cleaned_area:
+        value_template: "{{ states.vacuum.upstairs_vacuum.attributes['cleaned_area'] }}"
+        friendly_name: "Cleaned area"
+        unit_of_measurement: "m2"
+        icon_template: mdi:broom
+      upstairs_vacuum_battery:
+        value_template: "{{ states.vacuum.upstairs_vacuum.attributes['battery_level'] }}"
+        friendly_name: "Battery"
+        unit_of_measurement: "%"
+        icon_template: mdi:battery
+      upstairs_vacuum_cleaning_time: 
+        value_template: "{{ states.vacuum.upstairs_vacuum.attributes['cleaning_time'] }}"
+        friendly_name: "Cleaning time"
+        icon_template: mdi:timer
+  - platform: template
+    name: DownstairsVacuum
+    sensors:
+      downstairs_vacuum_status: 
+        value_template: "{{ states.vacuum.downstairs_vacuum.attributes['status'] }}"
+        friendly_name: "Status"
+        icon_template: mdi:information 
+      downstairs_vacuum_error: 
+        value_template: "{{ states.vacuum.downstairs_vacuum.attributes['error'] }}"
+        friendly_name: "Error"
+        icon_template: mdi:information 
+      downstairs_vacuum_fan: 
+        value_template: "{{ states.vacuum.downstairs_vacuum.attributes['fan_speed'] }}"
+        friendly_name: "Fan"
+        icon_template: mdi:fan
+      downstairs_vacuum_cleaned_area:
+        value_template: "{{ states.vacuum.downstairs_vacuum.attributes['cleaned_area'] }}"
+        friendly_name: "Cleaned area"
+        unit_of_measurement: "m2"
+        icon_template: mdi:broom
+      downstairs_vacuum_battery:
+        value_template: "{{ states.vacuum.downstairs_vacuum.attributes['battery_level'] }}"
+        friendly_name: "Battery"
+        unit_of_measurement: "%"
+        icon_template: mdi:battery
+      downstairs_vacuum_cleaning_time: 
+        value_template: "{{ states.vacuum.downstairs_vacuum.attributes['cleaning_time'] }}"
+        friendly_name: "Cleaning time"
+        icon_template: mdi:timer
+  
+  #  - platform: moon
+  - platform: time_date
+    display_options:
+      - 'date_time'
+  - platform: ring
+    monitored_conditions:
+      - battery
+      - last_activity
+      - last_ding
+      - last_motion
+      - volume
+  
+  #- platform: template
+  #    sensors:
+  #      vacuum_battery_level:
+  #        value_template: '{{ states.vacuum.upstairs_vacuum.attributes.battery_level }}'
+  ##        entity_id: vacuum.upstairs_vacuum
+  #        friendly_name: Vacuum Battery Status
+  
+  - platform: template
+    sensors:
+      last_motion:
+        value_template: >-
+           {% set today = now().day | int %}
+           {% set motion_date = states.sensor.ring_front_door_last_motion.attributes.created_at.strftime("%d") | int %}
+           {% if today == motion_date %}
+             {% set day = "Today" %}
+           {% elif (today - 1) == motion_date %}
+             {% set day = "Yesterday" %}
+           {% elif today == 1 and motion_date == 30 %}
+             {% set day = "Yesterday" %}
+           {% elif today == 1 and motion_date == 31 %}
+             {% set day = "Yesterday" %}
+           {% elif today == 1 and motion_date == 28 %}
+             {% set day = "Yesterday" %}
+           {% elif today == 1 and motion_date == 29 %}
+             {% set day = "Yesterday" %}
+           {% else %}
+             {% set day = as_timestamp(states.sensor.ring_front_door_last_motion.attributes.created_at) | timestamp_custom("%A")%}
+           {% endif %}
+           {% set time = as_timestamp(states.sensor.ring_front_door_last_motion.attributes.created_at) | timestamp_custom("%H:%M")%}
+           {{[day,time]|join(" at ")}}
+      last_ring:
+        value_template: >-
+           {% set today = now().day | int %}
+           {% set ring_date = states.sensor.ring_front_door_last_ding.attributes.created_at.strftime("%d") | int %}
+           {% if today == ring_date %}
+             {% set day = "Today" %}
+           {% elif (today - 1) == ring_date %}
+             {% set day = "Yesterday" %}
+           {% elif today == 1 and ring_date == 30 %}
+             {% set day = "Yesterday" %}
+           {% elif today == 1 and ring_date == 31 %}
+             {% set day = "Yesterday" %}
+           {% elif today == 1 and ring_date == 28 %}
+             {% set day = "Yesterday" %}
+           {% elif today == 1 and ring_date == 29 %}
+             {% set day = "Yesterday" %}
+           {% else %}
+             {% set day = as_timestamp(states.sensor.ring_front_door_last_ding.attributes.created_at) | timestamp_custom("%A")%}
+           {% endif %}
+           {% set time = as_timestamp(states.sensor.ring_front_door_last_ding.attributes.created_at) | timestamp_custom("%H:%M")%}
+           {{[day,time]|join(" at ")}}
+  
+  
