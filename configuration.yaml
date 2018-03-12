@@ -119,8 +119,8 @@ mqtt:
   client_id: hass
   discovery: true
   discovery_prefix: smartthings
-  username: cconner
-  password: cconner
+  username: !secret mqtt_username
+  password: !secret mqtt_password
 
 ring:
   username: !secret ring_username
