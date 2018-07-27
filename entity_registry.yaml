@@ -1,0 +1,70 @@
+media_player.living_room:
+  config_entry_id:
+  name:
+  platform: apple_tv
+  unique_id: 7ebd7aad9a6b82d78feb4cb4399f84c25039c030aa046dde23972e5e0505ab21
+remote.living_room:
+  config_entry_id:
+  name:
+  platform: apple_tv
+  unique_id: 7ebd7aad9a6b82d78feb4cb4399f84c25039c030aa046dde23972e5e0505ab21
+media_player.master_bedroom:
+  config_entry_id:
+  name:
+  platform: apple_tv
+  unique_id: 347c0ad77221cf88ae0be8a2111c18cc061d2e66544ee952ca7c9458e76cc225
+remote.master_bedroom:
+  config_entry_id:
+  name:
+  platform: apple_tv
+  unique_id: 347c0ad77221cf88ae0be8a2111c18cc061d2e66544ee952ca7c9458e76cc225
+media_player.office:
+  config_entry_id:
+  name:
+  platform: sonos
+  unique_id: RINCON_7828CA1E057801400
+media_player.xbr65a1e:
+  config_entry_id:
+  name:
+  platform: cast
+  unique_id: 013a9fc4-4a2f-2c1c-4fdb-6690c06c5ed4
+media_player.master_bedroom_2:
+  config_entry_id:
+  name:
+  platform: apple_tv
+  unique_id: 876084154bb72ee639a7d263437bbb046607f03bf234cd9ba1688dc8a95e6f46
+remote.master_bedroom_2:
+  config_entry_id:
+  name:
+  platform: apple_tv
+  unique_id: 876084154bb72ee639a7d263437bbb046607f03bf234cd9ba1688dc8a95e6f46
+media_player.master_bedroom_3:
+  config_entry_id:
+  name:
+  platform: apple_tv
+  unique_id: 90953578d4d28931184c328e9e9ae2d4de80d1d99cb5cc9d52282fa9085e0716
+remote.master_bedroom_3:
+  config_entry_id:
+  name:
+  platform: apple_tv
+  unique_id: 90953578d4d28931184c328e9e9ae2d4de80d1d99cb5cc9d52282fa9085e0716
+media_player.master_bedroom_speaker:
+  config_entry_id:
+  name:
+  platform: cast
+  unique_id: 3fb0cefd-7fb9-db2a-39f5-74efbe7038fb
+media_player.office_2:
+  config_entry_id:
+  name:
+  platform: sonos
+  unique_id: RINCON_7828CA138BEE01400
+media_player.living_room_2:
+  config_entry_id:
+  name:
+  platform: sonos
+  unique_id: RINCON_949F3EB3D0D201400
+media_player.bedroom:
+  config_entry_id:
+  name:
+  platform: sonos
+  unique_id: RINCON_7828CA50FE5E01400

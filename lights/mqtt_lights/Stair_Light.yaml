@@ -1,0 +1,7 @@
+platform: mqtt
+name: Stair Light
+state_topic: smartthings/Stair Light/switch
+command_topic: smartthings/Stair Light/switch
+payload_on: 'on'
+payload_off: 'off'
+retain: 'false'

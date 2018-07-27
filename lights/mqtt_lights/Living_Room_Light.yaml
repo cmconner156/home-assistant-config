@@ -1,0 +1,11 @@
+platform: mqtt
+name: "Living Room Light"
+state_topic: "smartthings/Living Room Light/switch"
+command_topic: "smartthings/Living Room Light/switch"
+brightness_state_topic: "smartthings/Living Room Light/level"
+brightness_command_topic: "smartthings/Living Room Light/level"
+brightness_scale: 101
+payload_on: "on"
+payload_off: "off"
+#optimistic: true
+retain: false

@@ -1,0 +1,7 @@
+platform: mqtt
+name: Office Fan
+state_topic: smartthings/Office Fan/switch
+command_topic: smartthings/Office Fan/switch
+payload_on: 'on'
+payload_off: 'off'
+retain: false

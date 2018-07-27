@@ -13,6 +13,14 @@ homeassistant:
   # Customization file
   customize: !include customize.yaml
 
+
+panel_iframe:
+  nodered:
+    title: 'Node-Red'
+    icon: 'mdi:shuffle-variant'
+    url: !secret nodered_url
+
+
 # Show links to resources in log and frontend
 introduction:
 
@@ -24,9 +32,9 @@ config:
 
 http:
   # Secrets are defined in the file secrets.yaml
-  # api_password: !secret http_password
+  api_password: !secret http_password
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-  # base_url: example.duckdns.org:8123
+  base_url: !secret base_url
 
 # Checks for available updates
 # Note: This component will send some information about your system to
@@ -83,17 +91,32 @@ tts:
 #ifttt:
 #  key: REDACTED
 
+#sonos:
+#  media_player:
+#    hosts:
+#      - !secret sonos_office1 # Office1
+#      - !secret sonos_office2 # Office2
+#      - !secret sonos_bedroom # Bedroom
+#      - !secret sonos_living # Living Room
 
-light:
-  - platform: mqtt
-    name: "Bedroom Light"
-    state_topic: "smartthings/Bedroom Light/switch/state"
-    command_topic: "smartthings/Bedroom Light/switch/cmd"
-    brightness_state_topic: "smartthings/Bedroom Light/level/state"
-    brightness_command_topic: "smartthings/Bedroom Light/level/cmd"
-    payload_on: "on"
-    payload_off: "off"
-    retain: true
+media_player:
+  - platform: sonos
+    hosts:
+      - !secret sonos_office1 # Office1
+      - !secret sonos_office2 # Office2
+      - !secret sonos_bedroom # Bedroom
+      - !secret sonos_living # Living Room
+#  - platform: denonavr
+#    host: !secret marantz_sr7011 #Living Room
+#    name: marantz-sr7011
+#    show_all_sources: True
+#    timeout: 2 #Timeout for HTTP 2 seconds default
+#    zones:  #Optional if we ever use
+#      - zone: Zone2 / Zone3  #Optional if we ever use
+#        name: NAME  #Optional if we ever use
+  - platform: denon
+    host: !secret marantz_sr7011
+    name: marantz-sr7011
 
 vacuum:
   - platform: xiaomi_miio
@@ -114,17 +137,18 @@ nest:
 
 mqtt:
   broker: !secret mqtt_broker
+  port: 1883
   protocol: 3.1
   keepalive: 60
-  client_id: hass
+  client_id: homeassistant
   discovery: true
   discovery_prefix: smartthings
   username: !secret mqtt_username
   password: !secret mqtt_password
 
-ring:
-  username: !secret ring_username
-  password: !secret ring_password
+ha_mqtt_bridge_sync:
+  server: !secret ha_mqtt_bridge_sync_server
+  port: !secret ha_mqtt_bridge_sync_port
 
 #camera:
 # ffmpeg Crashing Docker Container // Removing until resolved
@@ -139,11 +163,11 @@ ring:
  
 ffmpeg:
 
-binary_sensor:
-  - platform: ring
-    monitored_conditions:
-      - ding
-      - motion
+#binary_sensor:
+#  - platform: ring
+#    monitored_conditions:
+#      - ding
+#      - motion
 
 
 #################################################################
@@ -159,11 +183,17 @@ logger:
   default: warning
   logs:
     homeassistant.components.mqtt: debug
+#    homeassistant.components.python_script: debug
+    custom_components.ha_mqtt_bridge_sync: debug
+#python_script:
 history: !include history.yaml
 zone: !include zones.yaml
 group: !include groups.yaml
 scene: !include scenes.yaml
 sensor: !include sensors.yaml
+#light: !include lights.yaml
+light: !include_dir_list lights/
+switch: !include_dir_list switches/
 #input_boolean: !include input_boolean.yaml
 #input_select: !include input_select.yaml
 script: !include scripts.yaml

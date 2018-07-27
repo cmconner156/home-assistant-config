@@ -1,0 +1,7 @@
+platform: mqtt
+name: Master Bathroom Shower
+state_topic: smartthings/Master Bathroom Shower/switch
+command_topic: smartthings/Master Bathroom Shower/switch
+payload_on: 'on'
+payload_off: 'off'
+retain: 'false'

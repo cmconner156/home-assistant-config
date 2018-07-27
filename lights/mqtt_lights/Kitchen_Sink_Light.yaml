@@ -1,0 +1,7 @@
+platform: mqtt
+name: Kitchen Sink Light
+state_topic: smartthings/Kitchen Sink Light/switch
+command_topic: smartthings/Kitchen Sink Light/switch
+payload_on: 'on'
+payload_off: 'off'
+retain: 'false'

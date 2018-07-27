@@ -1,0 +1,7 @@
+platform: mqtt
+name: Living Room Lamp
+state_topic: smartthings/Living Room Lamp/switch
+command_topic: smartthings/Living Room Lamp/switch
+payload_on: 'on'
+payload_off: 'off'
+retain: 'false'

@@ -66,13 +66,13 @@
   - platform: time_date
     display_options:
       - 'date_time'
-  - platform: ring
-    monitored_conditions:
-      - battery
-      - last_activity
-      - last_ding
-      - last_motion
-      - volume
+#  - platform: ring
+#    monitored_conditions:
+#      - battery
+#      - last_activity
+#      - last_ding
+#      - last_motion
+#      - volume
   
   #- platform: template
   #    sensors:
@@ -81,49 +81,49 @@
   ##        entity_id: vacuum.upstairs_vacuum
   #        friendly_name: Vacuum Battery Status
   
-  - platform: template
-    sensors:
-      last_motion:
-        value_template: >-
-           {% set today = now().day | int %}
-           {% set motion_date = states.sensor.ring_front_door_last_motion.attributes.created_at.strftime("%d") | int %}
-           {% if today == motion_date %}
-             {% set day = "Today" %}
-           {% elif (today - 1) == motion_date %}
-             {% set day = "Yesterday" %}
-           {% elif today == 1 and motion_date == 30 %}
-             {% set day = "Yesterday" %}
-           {% elif today == 1 and motion_date == 31 %}
-             {% set day = "Yesterday" %}
-           {% elif today == 1 and motion_date == 28 %}
-             {% set day = "Yesterday" %}
-           {% elif today == 1 and motion_date == 29 %}
-             {% set day = "Yesterday" %}
-           {% else %}
-             {% set day = as_timestamp(states.sensor.ring_front_door_last_motion.attributes.created_at) | timestamp_custom("%A")%}
-           {% endif %}
-           {% set time = as_timestamp(states.sensor.ring_front_door_last_motion.attributes.created_at) | timestamp_custom("%H:%M")%}
-           {{[day,time]|join(" at ")}}
-      last_ring:
-        value_template: >-
-           {% set today = now().day | int %}
-           {% set ring_date = states.sensor.ring_front_door_last_ding.attributes.created_at.strftime("%d") | int %}
-           {% if today == ring_date %}
-             {% set day = "Today" %}
-           {% elif (today - 1) == ring_date %}
-             {% set day = "Yesterday" %}
-           {% elif today == 1 and ring_date == 30 %}
-             {% set day = "Yesterday" %}
-           {% elif today == 1 and ring_date == 31 %}
-             {% set day = "Yesterday" %}
-           {% elif today == 1 and ring_date == 28 %}
-             {% set day = "Yesterday" %}
-           {% elif today == 1 and ring_date == 29 %}
-             {% set day = "Yesterday" %}
-           {% else %}
-             {% set day = as_timestamp(states.sensor.ring_front_door_last_ding.attributes.created_at) | timestamp_custom("%A")%}
-           {% endif %}
-           {% set time = as_timestamp(states.sensor.ring_front_door_last_ding.attributes.created_at) | timestamp_custom("%H:%M")%}
-           {{[day,time]|join(" at ")}}
+#  - platform: template
+#    sensors:
+#      last_motion:
+#        value_template: >-
+#           {% set today = now().day | int %}
+#           {% set motion_date = states.sensor.ring_front_door_last_motion.attributes.created_at.strftime("%d") | int %}
+#           {% if today == motion_date %}
+#             {% set day = "Today" %}
+#           {% elif (today - 1) == motion_date %}
+#             {% set day = "Yesterday" %}
+#           {% elif today == 1 and motion_date == 30 %}
+#             {% set day = "Yesterday" %}
+#           {% elif today == 1 and motion_date == 31 %}
+#             {% set day = "Yesterday" %}
+#           {% elif today == 1 and motion_date == 28 %}
+#             {% set day = "Yesterday" %}
+#           {% elif today == 1 and motion_date == 29 %}
+#             {% set day = "Yesterday" %}
+#           {% else %}
+#             {% set day = as_timestamp(states.sensor.ring_front_door_last_motion.attributes.created_at) | timestamp_custom("%A")%}
+#           {% endif %}
+#           {% set time = as_timestamp(states.sensor.ring_front_door_last_motion.attributes.created_at) | timestamp_custom("%H:%M")%}
+#           {{[day,time]|join(" at ")}}
+#      last_ring:
+#        value_template: >-
+#           {% set today = now().day | int %}
+#           {% set ring_date = states.sensor.ring_front_door_last_ding.attributes.created_at.strftime("%d") | int %}
+#           {% if today == ring_date %}
+#             {% set day = "Today" %}
+#           {% elif (today - 1) == ring_date %}
+#             {% set day = "Yesterday" %}
+#           {% elif today == 1 and ring_date == 30 %}
+#             {% set day = "Yesterday" %}
+#           {% elif today == 1 and ring_date == 31 %}
+#             {% set day = "Yesterday" %}
+#           {% elif today == 1 and ring_date == 28 %}
+#             {% set day = "Yesterday" %}
+#           {% elif today == 1 and ring_date == 29 %}
+#             {% set day = "Yesterday" %}
+#           {% else %}
+#             {% set day = as_timestamp(states.sensor.ring_front_door_last_ding.attributes.created_at) | timestamp_custom("%A")%}
+#           {% endif %}
+#           {% set time = as_timestamp(states.sensor.ring_front_door_last_ding.attributes.created_at) | timestamp_custom("%H:%M")%}
+#           {{[day,time]|join(" at ")}}
   
   

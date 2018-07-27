@@ -1,0 +1,7 @@
+platform: mqtt
+name: Dining Room Light
+state_topic: smartthings/Dining Room Light/switch
+command_topic: smartthings/Dining Room Light/switch
+payload_on: 'on'
+payload_off: 'off'
+retain: false

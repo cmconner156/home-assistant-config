@@ -1,0 +1,9 @@
+platform: mqtt
+name: Kitchen Refrigerator Light
+state_topic: smartthings/Kitchen Refrigerator Light/switch
+command_topic: smartthings/Kitchen Refrigerator Light/switch
+payload_on: 'on'
+payload_off: 'off'
+retain: 'false'
+brightness_state_topic: smartthings/Kitchen Refrigerator Light/level
+brightness_command_topic: smartthings/Kitchen Refrigerator Light/level

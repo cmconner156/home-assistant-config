@@ -1,0 +1,7 @@
+platform: mqtt
+name: Bathroom Light
+state_topic: smartthings/Bathroom Light/switch
+command_topic: smartthings/Bathroom Light/switch
+payload_on: 'on'
+payload_off: 'off'
+retain: 'false'

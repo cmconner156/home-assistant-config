@@ -1,0 +1,9 @@
+platform: mqtt
+name: Kitchen Cabinet LED
+state_topic: smartthings/Kitchen Cabinet LED/switch
+command_topic: smartthings/Kitchen Cabinet LED/switch
+payload_on: 'on'
+payload_off: 'off'
+retain: false
+brightness_state_topic: smartthings/Kitchen Cabinet LED/level
+brightness_command_topic: smartthings/Kitchen Cabinet LED/level

@@ -1,24 +1,12 @@
-- action:
-  - service: vacuum.turn_on
-    entity_id:
-    - vacuum.upstairs_vacuum
-  alias: Start Upstairs Vacuum
-  condition: []
-  id: '1516677830561'
+- alias: "Sync W Bridge On Start"
   trigger:
-  - payload: 'on'
-    platform: mqtt
-    topic: smartthings/Upstairs Vacuum/switch/state
-- action:
-  - service: vacuum.return_to_base
-    entity_id: vacuum.upstairs_vacuum
-  alias: Return Home Upstairs Vacuum
-  condition: []
-  id: '1516677830561'
-  trigger:
-  - payload: 'off'
-    platform: mqtt
-    topic: smartthings/Upstairs Vacuum/switch/state
+    - platform: homeassistant
+      # Event can also be 'shutdown'
+      event: start
+  action:
+    - service: ha_mqtt_bridge_sync.sync
+
+
 - action:
   - service: vacuum.start_pause
     entity_id:
@@ -30,241 +18,274 @@
   - platform: template
     value_template: '{% if is_state_attr(''vacuum.upstairs_vacuum'', ''error'', ''Clean
       main brush'') %}true{% endif %}'
+
+#- action:
+#  - service: vacuum.turn_on
+#    entity_id:
+#    - vacuum.upstairs_vacuum
+#  alias: Start Upstairs Vacuum
+#  condition: []
+#  id: '1516677830561'
+#  trigger:
+#  - payload: 'on'
+#    platform: mqtt
+#    topic: smartthings/Upstairs Vacuum/switch/state
+#- action:
+#  - service: vacuum.return_to_base
+#    entity_id: vacuum.upstairs_vacuum
+#  alias: Return Home Upstairs Vacuum
+#  condition: []
+#  id: '1516677830561'
+#  trigger:
+#  - payload: 'off'
+#    platform: mqtt
+#    topic: smartthings/Upstairs Vacuum/switch/state
 - action:
-  - service: vacuum.turn_on
+  - service: vacuum.start_pause
     entity_id:
-    - vacuum.downstairs_vacuum
-  alias: Start Downstairs Vacuum
+    - vacuum.upstairs_vacuum
+  alias: Restart on Error Upstairs Vacuum
   condition: []
-  id: '1516677830561'
+  id: '1517181580468'
   trigger:
-  - payload: 'on'
-    platform: mqtt
-    topic: smartthings/Downstairs Vacuum/switch/state
-- action:
-  - service: vacuum.return_to_base
-    entity_id:
-    - vacuum.downstairs_vacuum
-  alias: Return Home Downstairs Vacuum
-  condition: []
-  id: '1516677830561'
-  trigger:
-  - payload: 'off'
-    platform: mqtt
-    topic: smartthings/Downstairs Vacuum/switch/state
-- action:
-  - data_template:
-      payload_template: '{{ states.vacuum.upstairs_vacuum.attributes.battery_level }}'
-      retain: 'true'
-      topic: smartthings/Upstairs Vacuum/homeassistant/battery
-    service: mqtt.publish
-  alias: Upstairs Vacuum Battery to SmartThings
-  condition: []
-  id: '1517606448000'
-  trigger:
-    platform: time
-    seconds: '/5'
-- action:
-  - data_template:
-      payload_template: '{{ states.vacuum.upstairs_vacuum.attributes.status }}'
-      retain: 'true'
-      topic: smartthings/Upstairs Vacuum/homeassistant/status
-    service: mqtt.publish
-  alias: Upstairs Vacuum Status to SmartThings
-  condition: []
-  id: '1517606448000'
-  trigger:
-    platform: time
-    seconds: '/5'
-- action:
-  - data_template:
-      payload_template: '{{ states.vacuum.upstairs_vacuum.attributes.fan_speed }}'
-      retain: 'true'
-      topic: smartthings/Upstairs Vacuum/homeassistant/fan_speed
-    service: mqtt.publish
-  alias: Upstairs Vacuum Fan Speed to SmartThings
-  condition: []
-  id: '1517606448000'
-  trigger:
-    platform: time
-    seconds: '/5'
-- action:
-  - data_template:
-      payload_template: '{{ states.vacuum.upstairs_vacuum.attributes.fan_speed_list }}'
-      retain: 'true'
-      topic: smartthings/Upstairs Vacuum/homeassistant/fan_speed_list
-    service: mqtt.publish
-  alias: Upstairs Vacuum Fan Speed List to SmartThings
-  condition: []
-  id: '1517606448000'
-  trigger:
-    platform: time
-    seconds: '/5'
-- action:
-  - data_template:
-      payload_template: '{{ states.vacuum.upstairs_vacuum.attributes.device_state_attributes }}'
-      retain: 'true'
-      topic: smartthings/Upstairs Vacuum/homeassistant/device_state_attributes
-    service: mqtt.publish
-  alias: Upstairs Vacuum Device State Attributes List to SmartThings
-  condition: []
-  id: '1517606448000'
-  trigger:
-    platform: time
-    seconds: '/5'
-- action:
-  - data_template:
-      payload_template: '{{ states.vacuum.upstairs_vacuum.attributes.is_on }}'
-      retain: 'true'
-      topic: smartthings/Upstairs Vacuum/homeassistant/is_on
-    service: mqtt.publish
-  alias: Upstairs Vacuum Is On to SmartThings
-  condition: []
-  id: '1517606448000'
-  trigger:
-    platform: time
-    seconds: '/5'
-- action:
-  - data_template:
-      payload_template: '{{ states.vacuum.upstairs_vacuum.attributes.available }}'
-      retain: 'true'
-      topic: smartthings/Upstairs Vacuum/homeassistant/available
-    service: mqtt.publish
-  alias: Upstairs Vacuum Available to SmartThings
-  condition: []
-  id: '1517606448000'
-  trigger:
-    platform: time
-    seconds: '/5'
-- action:
-  - data_template:
-      payload_template: '{{ states.vacuum.upstairs_vacuum.attributes.supported_features }}'
-      retain: 'true'
-      topic: smartthings/Upstairs Vacuum/homeassistant/supported_features
-    service: mqtt.publish
-  alias: Upstairs Vacuum Supported Features to SmartThings
-  condition: []
-  id: '1517606448000'
-  trigger:
-    platform: time
-    seconds: '/5'
-- action:
-  - data_template:
-      payload_template: '{{ states.vacuum.upstairs_vacuum.attributes.error }}'
-      retain: 'true'
-      topic: smartthings/Upstairs Vacuum/homeassistant/error
-    service: mqtt.publish
-  alias: Upstairs Vacuum Error to SmartThings
-  condition: []
-  id: '1517606448000'
-  trigger:
-    platform: time
-    seconds: '/5'
-- action:
-  - data_template:
-      payload_template: '{{ states.vacuum.downstairs_vacuum.attributes.battery_level }}'
-      retain: 'true'
-      topic: smartthings/Downstairs Vacuum/homeassistant/battery
-    service: mqtt.publish
-  alias: Downstairs Vacuum Battery to SmartThings
-  condition: []
-  id: '1517606448000'
-  trigger:
-    platform: time
-    seconds: '/5'
-- action:
-  - data_template:
-      payload_template: '{{ states.vacuum.downstairs_vacuum.attributes.status }}'
-      retain: 'true'
-      topic: smartthings/Downstairs Vacuum/homeassistant/status
-    service: mqtt.publish
-  alias: Downstairs Vacuum Status to SmartThings
-  condition: []
-  id: '1517606448000'
-  trigger:
-    platform: time
-    seconds: '/5'
-- action:
-  - data_template:
-      payload_template: '{{ states.vacuum.downstairs_vacuum.attributes.fan_speed }}'
-      retain: 'true'
-      topic: smartthings/Downstairs Vacuum/homeassistant/fan_speed
-    service: mqtt.publish
-  alias: Downstairs Vacuum Fan Speed to SmartThings
-  condition: []
-  id: '1517606448000'
-  trigger:
-    platform: time
-    seconds: '/5'
-- action:
-  - data_template:
-      payload_template: '{{ states.vacuum.downstairs_vacuum.attributes.fan_speed_list }}'
-      retain: 'true'
-      topic: smartthings/Downstairs Vacuum/homeassistant/fan_speed_list
-    service: mqtt.publish
-  alias: Downstairs Vacuum Fan Speed List to SmartThings
-  condition: []
-  id: '1517606448000'
-  trigger:
-    platform: time
-    seconds: '/5'
-- action:
-  - data_template:
-      payload_template: '{{ states.vacuum.downstairs_vacuum.attributes.device_state_attributes }}'
-      retain: 'true'
-      topic: smartthings/Downstairs Vacuum/homeassistant/device_state_attributes
-    service: mqtt.publish
-  alias: Downstairs Vacuum Device State Attributes List to SmartThings
-  condition: []
-  id: '1517606448000'
-  trigger:
-    platform: time
-    seconds: '/5'
-- action:
-  - data_template:
-      payload_template: '{{ states.vacuum.downstairs_vacuum.attributes.is_on }}'
-      retain: 'true'
-      topic: smartthings/Downstairs Vacuum/homeassistant/is_on
-    service: mqtt.publish
-  alias: Downstairs Vacuum Is On to SmartThings
-  condition: []
-  id: '1517606448000'
-  trigger:
-    platform: time
-    seconds: '/5'
-- action:
-  - data_template:
-      payload_template: '{{ states.vacuum.downstairs_vacuum.attributes.available }}'
-      retain: 'true'
-      topic: smartthings/Downstairs Vacuum/homeassistant/available
-    service: mqtt.publish
-  alias: Downstairs Vacuum Available to SmartThings
-  condition: []
-  id: '1517606448000'
-  trigger:
-    platform: time
-    seconds: '/5'
-- action:
-  - data_template:
-      payload_template: '{{ states.vacuum.downstairs_vacuum.attributes.supported_features }}'
-      retain: 'true'
-      topic: smartthings/Downstairs Vacuum/homeassistant/supported_features
-    service: mqtt.publish
-  alias: Downstairs Vacuum Supported Features to SmartThings
-  condition: []
-  id: '1517606448000'
-  trigger:
-    platform: time
-    seconds: '/5'
-- action:
-  - data_template:
-      payload_template: '{{ states.vacuum.downstairs_vacuum.attributes.error }}'
-      retain: 'true'
-      topic: smartthings/Downstairs Vacuum/homeassistant/error
-    service: mqtt.publish
-  alias: Downstairs Vacuum Error to SmartThings
-  condition: []
-  id: '1517606448000'
-  trigger:
-    platform: time
-    seconds: '/5'
+  - platform: template
+    value_template: '{% if is_state_attr(''vacuum.upstairs_vacuum'', ''error'', ''Clean
+      main brush'') %}true{% endif %}'
+#- action:
+#  - service: vacuum.turn_on
+#    entity_id:
+#    - vacuum.downstairs_vacuum
+#  alias: Start Downstairs Vacuum
+#  condition: []
+#  id: '1516677830561'
+#  trigger:
+#  - payload: 'on'
+#    platform: mqtt
+#    topic: smartthings/Downstairs Vacuum/switch/state
+#- action:
+#  - service: vacuum.return_to_base
+#    entity_id:
+#    - vacuum.downstairs_vacuum
+#  alias: Return Home Downstairs Vacuum
+#  condition: []
+#  id: '1516677830561'
+#  trigger:
+#  - payload: 'off'
+#    platform: mqtt
+#    topic: smartthings/Downstairs Vacuum/switch/state
+#- action:
+#  - data_template:
+#      payload_template: '{{ states.vacuum.upstairs_vacuum.attributes.battery_level }}'
+#      retain: 'true'
+#      topic: smartthings/Upstairs Vacuum/homeassistant/battery
+#    service: mqtt.publish
+#  alias: Upstairs Vacuum Battery to SmartThings
+#  condition: []
+#  id: '1517606448000'
+#  trigger:
+#    platform: time
+#    seconds: '/5'
+#- action:
+#  - data_template:
+#      payload_template: '{{ states.vacuum.upstairs_vacuum.attributes.status }}'
+#      retain: 'true'
+#      topic: smartthings/Upstairs Vacuum/homeassistant/status
+#    service: mqtt.publish
+#  alias: Upstairs Vacuum Status to SmartThings
+#  condition: []
+#  id: '1517606448000'
+#  trigger:
+#    platform: time
+#    seconds: '/5'
+#- action:
+#  - data_template:
+#      payload_template: '{{ states.vacuum.upstairs_vacuum.attributes.fan_speed }}'
+#      retain: 'true'
+#      topic: smartthings/Upstairs Vacuum/homeassistant/fan_speed
+#    service: mqtt.publish
+#  alias: Upstairs Vacuum Fan Speed to SmartThings
+#  condition: []
+#  id: '1517606448000'
+#  trigger:
+#    platform: time
+#    seconds: '/5'
+#- action:
+#  - data_template:
+#      payload_template: '{{ states.vacuum.upstairs_vacuum.attributes.fan_speed_list }}'
+#      retain: 'true'
+#      topic: smartthings/Upstairs Vacuum/homeassistant/fan_speed_list
+#    service: mqtt.publish
+#  alias: Upstairs Vacuum Fan Speed List to SmartThings
+#  condition: []
+#  id: '1517606448000'
+#  trigger:
+#    platform: time
+#    seconds: '/5'
+#- action:
+#  - data_template:
+#      payload_template: '{{ states.vacuum.upstairs_vacuum.attributes.device_state_attributes }}'
+#      retain: 'true'
+#      topic: smartthings/Upstairs Vacuum/homeassistant/device_state_attributes
+#    service: mqtt.publish
+#  alias: Upstairs Vacuum Device State Attributes List to SmartThings
+#  condition: []
+#  id: '1517606448000'
+#  trigger:
+#    platform: time
+#    seconds: '/5'
+#- action:
+#  - data_template:
+#      payload_template: '{{ states.vacuum.upstairs_vacuum.attributes.is_on }}'
+#      retain: 'true'
+#      topic: smartthings/Upstairs Vacuum/homeassistant/is_on
+#    service: mqtt.publish
+#  alias: Upstairs Vacuum Is On to SmartThings
+#  condition: []
+#  id: '1517606448000'
+#  trigger:
+#    platform: time
+#    seconds: '/5'
+#- action:
+#  - data_template:
+#      payload_template: '{{ states.vacuum.upstairs_vacuum.attributes.available }}'
+#      retain: 'true'
+#      topic: smartthings/Upstairs Vacuum/homeassistant/available
+#    service: mqtt.publish
+#  alias: Upstairs Vacuum Available to SmartThings
+#  condition: []
+#  id: '1517606448000'
+#  trigger:
+#    platform: time
+#    seconds: '/5'
+#- action:
+#  - data_template:
+#      payload_template: '{{ states.vacuum.upstairs_vacuum.attributes.supported_features }}'
+#      retain: 'true'
+#      topic: smartthings/Upstairs Vacuum/homeassistant/supported_features
+#    service: mqtt.publish
+#  alias: Upstairs Vacuum Supported Features to SmartThings
+#  condition: []
+#  id: '1517606448000'
+#  trigger:
+#    platform: time
+#    seconds: '/5'
+#- action:
+#  - data_template:
+#      payload_template: '{{ states.vacuum.upstairs_vacuum.attributes.error }}'
+#      retain: 'true'
+#      topic: smartthings/Upstairs Vacuum/homeassistant/error
+#    service: mqtt.publish
+#  alias: Upstairs Vacuum Error to SmartThings
+#  condition: []
+#  id: '1517606448000'
+#  trigger:
+#    platform: time
+#    seconds: '/5'
+#- action:
+#  - data_template:
+#      payload_template: '{{ states.vacuum.downstairs_vacuum.attributes.battery_level }}'
+#      retain: 'true'
+#      topic: smartthings/Downstairs Vacuum/homeassistant/battery
+#    service: mqtt.publish
+#  alias: Downstairs Vacuum Battery to SmartThings
+#  condition: []
+#  id: '1517606448000'
+#  trigger:
+#    platform: time
+#    seconds: '/5'
+#- action:
+#  - data_template:
+#      payload_template: '{{ states.vacuum.downstairs_vacuum.attributes.status }}'
+#      retain: 'true'
+#      topic: smartthings/Downstairs Vacuum/homeassistant/status
+#    service: mqtt.publish
+#  alias: Downstairs Vacuum Status to SmartThings
+#  condition: []
+#  id: '1517606448000'
+#  trigger:
+#    platform: time
+#    seconds: '/5'
+#- action:
+#  - data_template:
+#      payload_template: '{{ states.vacuum.downstairs_vacuum.attributes.fan_speed }}'
+#      retain: 'true'
+#      topic: smartthings/Downstairs Vacuum/homeassistant/fan_speed
+#    service: mqtt.publish
+#  alias: Downstairs Vacuum Fan Speed to SmartThings
+#  condition: []
+#  id: '1517606448000'
+#  trigger:
+#    platform: time
+#    seconds: '/5'
+#- action:
+#  - data_template:
+#      payload_template: '{{ states.vacuum.downstairs_vacuum.attributes.fan_speed_list }}'
+#      retain: 'true'
+#      topic: smartthings/Downstairs Vacuum/homeassistant/fan_speed_list
+#    service: mqtt.publish
+#  alias: Downstairs Vacuum Fan Speed List to SmartThings
+#  condition: []
+#  id: '1517606448000'
+#  trigger:
+#    platform: time
+#    seconds: '/5'
+#- action:
+#  - data_template:
+#      payload_template: '{{ states.vacuum.downstairs_vacuum.attributes.device_state_attributes }}'
+#      retain: 'true'
+#      topic: smartthings/Downstairs Vacuum/homeassistant/device_state_attributes
+#    service: mqtt.publish
+#  alias: Downstairs Vacuum Device State Attributes List to SmartThings
+#  condition: []
+#  id: '1517606448000'
+#  trigger:
+#    platform: time
+#    seconds: '/5'
+#- action:
+#  - data_template:
+#      payload_template: '{{ states.vacuum.downstairs_vacuum.attributes.is_on }}'
+#      retain: 'true'
+#      topic: smartthings/Downstairs Vacuum/homeassistant/is_on
+#    service: mqtt.publish
+#  alias: Downstairs Vacuum Is On to SmartThings
+#  condition: []
+#  id: '1517606448000'
+#  trigger:
+#    platform: time
+#    seconds: '/5'
+#- action:
+#  - data_template:
+#      payload_template: '{{ states.vacuum.downstairs_vacuum.attributes.available }}'
+#      retain: 'true'
+#      topic: smartthings/Downstairs Vacuum/homeassistant/available
+#    service: mqtt.publish
+#  alias: Downstairs Vacuum Available to SmartThings
+#  condition: []
+#  id: '1517606448000'
+#  trigger:
+#    platform: time
+#    seconds: '/5'
+#- action:
+#  - data_template:
+#      payload_template: '{{ states.vacuum.downstairs_vacuum.attributes.supported_features }}'
+#      retain: 'true'
+#      topic: smartthings/Downstairs Vacuum/homeassistant/supported_features
+#    service: mqtt.publish
+#  alias: Downstairs Vacuum Supported Features to SmartThings
+#  condition: []
+#  id: '1517606448000'
+#  trigger:
+#    platform: time
+#    seconds: '/5'
+#- action:
+#  - data_template:
+#      payload_template: '{{ states.vacuum.downstairs_vacuum.attributes.error }}'
+#      retain: 'true'
+#      topic: smartthings/Downstairs Vacuum/homeassistant/error
+#    service: mqtt.publish
+#  alias: Downstairs Vacuum Error to SmartThings
+#  condition: []
+#  id: '1517606448000'
+#  trigger:
+#    platform: time
+#    seconds: '/5'

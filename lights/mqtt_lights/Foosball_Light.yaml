@@ -1,0 +1,7 @@
+platform: mqtt
+name: "Foosball Light"
+state_topic: "smartthings/Foosball Light/switch"
+command_topic: "smartthings/Foosball Light/switch"
+payload_on: "on"
+payload_off: "off"
+retain: false

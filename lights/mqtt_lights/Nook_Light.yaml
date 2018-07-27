@@ -1,0 +1,7 @@
+platform: mqtt
+name: Nook Light
+state_topic: smartthings/Nook Light/switch
+command_topic: smartthings/Nook Light/switch
+payload_on: 'on'
+payload_off: 'off'
+retain: 'false'
