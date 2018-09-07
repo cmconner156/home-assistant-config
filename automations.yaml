@@ -1,3 +1,181 @@
+- alias: "Vicky Leave Mom"
+  trigger:
+    - platform: zone
+      event: leave
+      zone: zone.vicky_mom
+      entity_id: device_tracker.life360_vicky_conner
+  action:
+    - service: script.sonos_say
+      data_template:
+        sonos_entity: media_player.bedroom_speaker,media_player.living_room_2,media_player.office
+        volume: 0.3
+        message: 'Vicky has left Vicky Mom'
+        delay: '00:00:05'
+
+- alias: "Vicky Arrived 75 and Man O War"
+  trigger:
+    - platform: zone
+      event: enter
+      zone: zone.75_man_o_war
+      entity_id: device_tracker.life360_vicky_conner
+  action:
+    - service: script.sonos_say
+      data_template:
+        sonos_entity: media_player.bedroom_speaker,media_player.living_room_2,media_player.office
+        volume: 0.4
+        message: 'Vicky has arrived at 75 and Man O War'
+        delay: '00:00:05'
+
+- alias: "Vicky Arrived Todds Road and Man O War"
+  trigger:
+    - platform: zone
+      event: enter
+      zone: zone.todds_road_man_o_war
+      entity_id: device_tracker.life360_vicky_conner
+  action:
+    - service: script.sonos_say
+      data_template:
+        sonos_entity: media_player.bedroom_speaker,media_player.living_room_2,media_player.office
+        volume: 0.4
+        message: 'Vicky has arrived at Todds Road and Man O War'
+        delay: '00:00:05'
+
+- alias: "Vicky Arrived Richmond Road and Man O War"
+  trigger:
+    - platform: zone
+      event: enter
+      zone: zone.richmond_road_man_o_war
+      entity_id: device_tracker.life360_vicky_conner
+  action:
+    - service: script.sonos_say
+      data_template:
+        sonos_entity: media_player.bedroom_speaker,media_player.living_room_2,media_player.office
+        volume: 0.4
+        message: 'Vicky has arrived at Richmond Road and Man O War'
+        delay: '00:00:05'
+
+- alias: "Vicky Leave Garden Springs"
+  trigger:
+    - platform: zone
+      event: leave
+      zone: zone.garden_springs_elementary
+      entity_id: device_tracker.life360_vicky_conner
+  action:
+    - service: script.sonos_say
+      data_template:
+        sonos_entity: media_player.bedroom_speaker,media_player.living_room_2,media_player.office
+        volume: 0.4
+        message: 'Vicky has left Vicky Work'
+        delay: '00:00:05'
+
+- alias: "Vicky Arrived at Home Radius"
+  trigger:
+    - platform: zone
+      event: enter
+      zone: zone.home_radius
+      entity_id: device_tracker.life360_vicky_conner
+  action:
+    - service: script.sonos_say
+      data_template:
+        sonos_entity: media_player.bedroom_speaker,media_player.living_room_2,media_player.office
+        volume: 0.4
+        message: 'Vicky has arrived at Home Radius Opening Garage Door'
+        delay: '00:00:05'
+
+- alias: "Chris or Vicky Arrived Home Opening Garage Door"
+  trigger:
+    - platform: zone
+      event: enter
+      zone: zone.home_radius
+      entity_id: device_tracker.life360_vicky_conner
+    - platform: zone
+      event: enter
+      zone: zone.home_radius
+      entity_id: device_tracker.life360_chris_conner
+  action:
+    - service_template: >
+        {%- if is_state("cover.garage_mqtt", "closed") -%}
+          cover.open_cover
+        {% endif %}
+      entity_id: cover.garage_mqtt
+
+
+- alias: "Vicky Left at Home Radius"
+  trigger:
+    - platform: zone
+      event: enter
+      zone: zone.home_radius
+      entity_id: device_tracker.life360_vicky_conner
+  action:
+    - service: script.sonos_say
+      data_template:
+        sonos_entity: media_player.bedroom_speaker,media_player.living_room_2,media_player.office
+        volume: 0.4
+        message: 'Vicky has left Home Radius Closing Garage Door'
+        delay: '00:00:05'
+
+- alias: "Chris or Vicky Left Home Closing Garage Door"
+  trigger:
+    - platform: zone
+      event: leave
+      zone: zone.home_radius
+      entity_id: device_tracker.life360_vicky_conner
+    - platform: zone
+      event: leave
+      zone: zone.home_radius
+      entity_id: device_tracker.life360_chris_conner
+  action:
+    - service_template: >
+        {%- if is_state("cover.garage_mqtt", "open") -%}
+          cover.close_cover
+        {% endif %}
+      entity_id: cover.garage_mqtt
+
+- alias: 'Notify and Close if garage is open for 5 mins'
+  trigger:
+    platform: state
+    entity_id:
+      - cover.garage_mqtt
+    from: closed
+    to: open
+    for:
+      minutes: 1
+  action:
+    - service_template: >
+        {%- if is_state("cover.garage_mqtt", "open") -%}
+          cover.close_cover
+        {% endif %}
+      entity_id: cover.garage_mqtt
+    - service: script.sonos_say
+      data_template:
+        sonos_entity: media_player.bedroom_speaker,media_player.living_room_2,media_player.office
+        volume: 0.4
+        message: 'The garage door has been open for 1 minute.  Closing garage door'
+        delay: '00:00:05'
+
+
+#- alias: "Chris Arrived Home Opening Garage Door"
+#  trigger:
+#    - platform: zone
+#      event: enter
+#      zone: zone.home_radius
+#      entity_id: device_tracker.life360_chris_conner
+#  action:
+#    - service: cover.open_cover
+#      data_template:
+#        entity_id: cover.garage_mqtt
+
+#- alias: "Chris Left Home Closing Garage Door"
+#  trigger:
+#    - platform: zone
+#      event: leave
+#      zone: zone.home_radius
+#      entity_id: device_tracker.life360_chris_conner
+#  action:
+#    - service: cover.close_cover
+#      data_template:
+#        entity_id: cover.garage_mqtt
+
 - alias: "Sync W Bridge On Start"
   trigger:
     - platform: homeassistant
@@ -6,18 +184,60 @@
   action:
     - service: ha_mqtt_bridge_sync.sync
 
-
-- action:
-  - service: vacuum.start_pause
-    entity_id:
-    - vacuum.upstairs_vacuum
-  alias: Restart on Error Upstairs Vacuum
+- alias: Restart on Error Upstairs Vacuum
+  action:
+    - service: vacuum.start_pause
+      entity_id:
+      - vacuum.upstairs_vacuum
   condition: []
   id: '1517181580468'
   trigger:
-  - platform: template
-    value_template: '{% if is_state_attr(''vacuum.upstairs_vacuum'', ''error'', ''Clean
-      main brush'') %}true{% endif %}'
+    - platform: template
+      value_template: '{% if is_state_attr(''vacuum.upstairs_vacuum'', ''error'', ''Clean
+        main brush'') %}true{% endif %}'
+
+- alias: 'test'
+  trigger:
+    - platform: state
+      entity_id: input_boolean.mytest
+  action:
+    - service: script.sonos_say
+      data:
+        sonos_entity: media_player.office
+        volume: 0.5
+        message: 'Vicky is up stairs!'
+        delay: '00:00:05'
+
+
+- alias: Life360 Overdue Update
+  trigger:
+    platform: event
+    event_type: device_tracker.life360_update_overdue
+  action:
+    service: notify.email_me
+    data_template:
+      title: Life360 update overdue
+      message: >
+        Update for {{
+          state_attr(trigger.event.data.entity_id, 'friendly_name') or
+          trigger.event.data.entity_id
+        }} is overdue.
+
+- alias: Life360 Update Restored
+  trigger:
+    platform: event
+    event_type: device_tracker.life360_update_restored
+  action:
+    service: notify.email_me
+    data_template:
+      title: Life360 update restored
+      message: >
+        Update for {{
+          state_attr(trigger.event.data.entity_id, 'friendly_name') or
+          trigger.event.data.entity_id
+        }} restored after {{ trigger.event.data.wait }}.
+
+
 
 #- action:
 #  - service: vacuum.turn_on

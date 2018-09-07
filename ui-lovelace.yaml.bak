@@ -1,0 +1,215 @@
+name: Conners Name
+title: Conners Title
+# Include external resources
+resources:
+  - url: /local/my-custom-card.js
+    type: js
+  - url: /local/my-webfont.css
+    type: css
+  - url: /local/bignumber-card.js?v=0.0.1
+    type: js
+  - url: /local/monster-card.js?v=0.0.1
+    type: js
+  - url: /local/gauge-card.js?v=0.0.1
+    type: js
+#  - url: /local/last-motion-card.js?v=0.0.1
+#    type: js
+#  - url: /local/card-tracker.js?v=0.0.1
+#    type: js
+#  - url: /local/useful-markdown-card.js?v=0.0.1
+#    type: js
+  
+# Optional background for all views. Check https://developer.mozilla.org/en-US/docs/Web/CSS/background for more examples.
+background: center / cover no-repeat url("/background.png") fixed
+# Exclude entities from "Unused entities" view
+#excluded_entities:
+#  - weblink.router
+views:
+  - icon: mdi:home
+    title: Home
+    id: home
+    cards:
+      - type: entity-filter
+        entities:
+          - device_tracker.life360_chris_conner
+          - device_tracker.life360_vicky_conner
+        state_filter:
+          - 'home'
+        card:
+          type: glance
+          title: People that are home
+
+      - type: picture-glance
+        title: Front Patio
+        image:
+        navigation_path: /lovelace/front_patio
+        camera_image: camera.front_door
+        entities:
+          - camera.front_door
+          - binary_sensor.front_door_camera_person_detected
+          - binary_sensor.motion_front_door
+          - light.entry_light
+          - binary_sensor.front_door_camera_sound_detected
+  
+
+      - type: picture-glance
+        title: Living Room
+        image:
+        navigation_path: /lovelace/living_room
+        camera_image: camera.living_room
+        entities:
+          - camera.living_room
+          - binary_sensor.living_room_camera_motion_detected
+          - binary_sensor.living_room_camera_sound_detected
+          - group.living_room_lights
+  #        - switch.living_room_scentsy_relay
+
+      - type: entities
+        title: Garage
+        entities:
+          - cover.garage_mqtt
+  
+      - type: picture-glance
+        image: https://images2.roomstogo.com/is/image/roomstogo/br_rm_belmar_black_pan~Belmar-Black-5-Pc-Queen-Bedroom.jpeg?$pdp_gallery_945$
+        title: Bedroom
+        navigation_path: /lovelace/bedroom
+        entities:
+          - light.bedroom_light
+  
+      - type: entities
+        title: Downstairs Thermostat
+        show_header_toggle: true
+        entities:
+          - binary_sensor.home_away
+          - binary_sensor.downstairs_thermostat_fan
+          - binary_sensor.downstairs_thermostat_has_leaf
+          - binary_sensor.downstairs_thermostat_is_locked
+          - binary_sensor.downstairs_thermostat_is_using_emergency_heat
+          - binary_sensor.downstairs_thermostat_online
+          - sensor.downstairs_thermostat_humidity
+          - sensor.downstairs_thermostat_hvac_state
+          - sensor.downstairs_thermostat_operation_mode
+          - sensor.downstairs_thermostat_target
+          - sensor.downstairs_thermostat_temperature
+          - climate.downstairs_thermostat
+
+      - type: entities
+        title: Downstairs Thermostat Set
+        show_header_toggle: true
+        entities:
+          - climate.downstairs_thermostat
+  
+      - type: picture-elements
+        image: /local/vacuum_card.jpg
+        elements:
+        - type: icon
+          icon: mdi:bell-ring
+          tap_action: call-service
+          entity: vacuum.downstairs_vacuum
+          service: vacuum.locate
+          style:
+            top: 80%
+            left: 80%
+            "--paper-item-icon-color": rgb(115, 122, 130)
+  
+        - type: icon
+          tap_action: call-service
+          icon: mdi:home
+          entity: vacuum.downstairs_vacuum
+          service: vacuum.return_to_base
+          style:
+            top: 80%
+            left: 60%
+            "--paper-item-icon-color": rgb(115, 122, 130)
+  
+        - type: icon
+          icon: mdi:play-pause
+          tap_action: call-service
+          entity: vacuum.downstairs_vacuum
+          service: vacuum.start_pause
+          style:
+            top: 80%
+            left: 40%
+            "--paper-item-icon-color": rgb(115, 122, 130)
+
+        - type: icon
+          icon: mdi:stop
+          tap_action: call-service
+          entity: vacuum.downstairs_vacuum
+          service: vacuum.stop
+          style:
+            top: 80%
+            left: 20%
+            "--paper-item-icon-color": rgb(115, 122, 130)
+
+        - type: state-label
+          entity: sensor.downstairs_vacuum_status
+          style:
+            top: 80%
+            left: 15%
+            color: rgb(255, 255, 255)
+            transform: translate(0%,-50%)
+            pointer-events: none
+            text-shadow: 1px 1px black
+            font-family: Trebuchet MS
+            font-size: 90%
+            font-weight: bold
+            border-left-style: solid
+            border-color: rgb(34, 154, 210)
+            background-color: rgb(54, 65, 78)
+            opacity: 0.8
+
+        - type: state-label
+          entity: sensor.downstairs_vacuum_battery
+          style:
+            top: 10%
+            right: 5%
+            color: rgb(255, 255, 255)
+            transform: translate(0%,-50%)
+            pointer-events: none
+            text-shadow: 1px 1px black
+            font-family: Trebuchet MS
+            font-size: 90%
+            font-weight: bold
+            border-right-style: solid
+            border-color: rgb(34, 154, 210)
+            background-color: rgb(54, 65, 78)
+            opacity: 0.8
+
+  - icon: mdi:pot-mix
+    title: Kitchen
+    id: kitchen
+    cards: 
+      - type: picture-glance
+        title: Kitchen
+        image:
+        camera_image: camera.office
+        entities:
+          - camera.office
+          - binary_sensor.office_camera_motion_detected
+          - input_select.dishwasher_status
+          - climate.kitchen
+
+      - type: picture-glance
+        title: Front Patio
+        image:
+        camera_image: camera.front_door
+        entities:
+          - camera.front_door
+          - binary_sensor.front_door_camera_person_detected
+          - binary_sensor.motion_front_door
+          - light.entry_light
+          - binary_sensor.front_door_camera_sound_detected
+  
+      - type: entities
+        title: Lights
+        entities:
+          - light.kitchen_bar_light
+          - light.kitchen_cabinet_led
+          - light.kitchen_cabinet_light
+          - light.kitchen_dish_light
+          - light.kitchen_light
+          - light.kitchen_refrigerator_light
+          - light.kitchen_sink_light
+          - light.nook_light
+  

@@ -1,0 +1,21 @@
+#################################################################
+## Media Players
+#################################################################
+
+- platform: sonos
+  hosts:
+    - !secret sonos_office1 # Office1
+#    - !secret sonos_office2 # Office2
+    - !secret sonos_bedroom # Bedroom
+    - !secret sonos_living # Living Room
+#- platform: denonavr
+#  host: !secret marantz_sr7011 #Living Room
+#  name: marantz-sr7011
+#  show_all_sources: True
+#  timeout: 2 #Timeout for HTTP 2 seconds default
+#  zones:  #Optional if we ever use
+#    - zone: Zone2 / Zone3  #Optional if we ever use
+#      name: NAME  #Optional if we ever use
+- platform: denon
+  host: !secret marantz_sr7011
+  name: marantz-sr7011

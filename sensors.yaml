@@ -8,58 +8,58 @@
     sensors:
       upstairs_vacuum_status: 
         value_template: "{{ states.vacuum.upstairs_vacuum.attributes['status'] }}"
-        friendly_name: "Status"
+        friendly_name: "Upstairs Vacuum Status"
         icon_template: mdi:information 
       upstairs_vacuum_error: 
         value_template: "{{ states.vacuum.upstairs_vacuum.attributes['error'] }}"
-        friendly_name: "Error"
+        friendly_name: "Upstairs Vacuum Error"
         icon_template: mdi:information 
       upstairs_vacuum_fan: 
         value_template: "{{ states.vacuum.upstairs_vacuum.attributes['fan_speed'] }}"
-        friendly_name: "Fan"
+        friendly_name: "Upstairs Vacuum Fan"
         icon_template: mdi:fan
       upstairs_vacuum_cleaned_area:
         value_template: "{{ states.vacuum.upstairs_vacuum.attributes['cleaned_area'] }}"
-        friendly_name: "Cleaned area"
+        friendly_name: "Upstairs Vacuum Cleaned area"
         unit_of_measurement: "m2"
         icon_template: mdi:broom
       upstairs_vacuum_battery:
         value_template: "{{ states.vacuum.upstairs_vacuum.attributes['battery_level'] }}"
-        friendly_name: "Battery"
+        friendly_name: "Upstairs Vacuum Battery"
         unit_of_measurement: "%"
         icon_template: mdi:battery
       upstairs_vacuum_cleaning_time: 
         value_template: "{{ states.vacuum.upstairs_vacuum.attributes['cleaning_time'] }}"
-        friendly_name: "Cleaning time"
+        friendly_name: "Upstairs Vacuum Cleaning time"
         icon_template: mdi:timer
   - platform: template
     name: DownstairsVacuum
     sensors:
       downstairs_vacuum_status: 
         value_template: "{{ states.vacuum.downstairs_vacuum.attributes['status'] }}"
-        friendly_name: "Status"
+        friendly_name: "Downstairs Vacuum Status"
         icon_template: mdi:information 
       downstairs_vacuum_error: 
         value_template: "{{ states.vacuum.downstairs_vacuum.attributes['error'] }}"
-        friendly_name: "Error"
+        friendly_name: "Downstairs Vacuum Error"
         icon_template: mdi:information 
       downstairs_vacuum_fan: 
         value_template: "{{ states.vacuum.downstairs_vacuum.attributes['fan_speed'] }}"
-        friendly_name: "Fan"
+        friendly_name: "Downstairs Vacuum Fan"
         icon_template: mdi:fan
       downstairs_vacuum_cleaned_area:
         value_template: "{{ states.vacuum.downstairs_vacuum.attributes['cleaned_area'] }}"
-        friendly_name: "Cleaned area"
+        friendly_name: "Downstairs Vacuum Cleaned area"
         unit_of_measurement: "m2"
         icon_template: mdi:broom
       downstairs_vacuum_battery:
         value_template: "{{ states.vacuum.downstairs_vacuum.attributes['battery_level'] }}"
-        friendly_name: "Battery"
+        friendly_name: "Downstairs Vacuum Battery"
         unit_of_measurement: "%"
         icon_template: mdi:battery
       downstairs_vacuum_cleaning_time: 
         value_template: "{{ states.vacuum.downstairs_vacuum.attributes['cleaning_time'] }}"
-        friendly_name: "Cleaning time"
+        friendly_name: "Downstairs Vacuum Cleaning time"
         icon_template: mdi:timer
   
   #  - platform: moon

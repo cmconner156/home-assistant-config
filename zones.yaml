@@ -1,3 +1,46 @@
 #################################################################
 ### Zones
 ##################################################################
+- name: !secret vicky_work
+  latitude: !secret vicky_work_lat
+  longitude: !secret vicky_work_long
+  radius: 300
+  icon: mdi:bus-school
+
+- name: Vicky Mom
+  latitude: !secret vicky_mom_lat
+  longitude: !secret vicky_mom_long
+  radius: 2000
+  icon: mdi:home-plus
+
+- name: 75 Man O War
+  latitude: 38.020302
+  longitude: -84.413085
+  radius: 500
+  icon: mdi:highway
+
+- name: Todds Road Man O War
+  latitude: 38.010004
+  longitude: -84.422504
+  radius: 500
+  icon: mdi:road
+
+- name: Richmond Road Man O War
+  latitude: 37.999863
+  longitude: -84.445347
+  radius: 500
+  icon: mdi:road
+
+- name: Home Radius
+  latitude: !secret home_lat
+  longitude: !secret home_long
+  radius: 500
+  icon: mdi:home-circle
+
+# This will override the default home zone
+- name: Home
+  latitude: !secret home_lat
+  longitude: !secret home_long
+  radius: 100
+  icon: mdi:home
+

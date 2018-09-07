@@ -1,0 +1,21 @@
+#################################################################
+## Alexa intents
+#################################################################
+
+###ALEXA####
+#
+VickyTest:
+  action:
+    - service: script.sonos_say
+      data:
+        sonos_entity: media_player.office
+        volume: 0.5
+        message: 'Vicky is up stairs!'
+        delay: '00:00:05'
+#  action:
+#    service: light.turn_on
+#      data:
+#        entity_id: light.Bedroom Light
+
+
+

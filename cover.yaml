@@ -1,0 +1,15 @@
+#################################################################
+## Garage doors
+#################################################################
+- platform: mqtt
+  name: "garage_mqtt"
+  state_topic: "cmnd/sonoff_garage_state/POWER2"
+  command_topic: "cmnd/sonoff_garage/POWER"
+  payload_open: "ON"
+  payload_close: "ON"
+  payload_stop: "ON"
+  state_open: "OFF"
+  state_closed: "ON"
+  optomistic: false
+  retain: false
+

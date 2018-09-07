@@ -1,0 +1,8 @@
+#################################################################
+## SONOFF GARAGE SYNC CONFIG
+#################################################################
+topic_in: "tele/sonoff_garage/SENSOR"
+garage_id: "cover.garage_mqtt"
+state_closed: "on"
+state_open: "off"
+tele_state_key: "Switch2"

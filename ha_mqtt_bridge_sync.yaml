@@ -1,0 +1,5 @@
+#################################################################
+## HA MQTT BRDIGE SYNC CONFIG
+#################################################################
+server: !secret ha_mqtt_bridge_sync_server
+port: !secret ha_mqtt_bridge_sync_port

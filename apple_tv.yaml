@@ -1,0 +1,11 @@
+#################################################################
+## Apple TV Configs
+#################################################################
+#- name: Living Room Apple TV
+#  host: REDACTED.150
+#  login_id: REDACTED
+#  start_off: false
+#- name: Guest Bedroom Apple TV
+#  host: REDACTED.153
+#  login_id: REDACTED
+#  start_off: false

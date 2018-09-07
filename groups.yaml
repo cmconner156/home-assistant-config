@@ -2,6 +2,94 @@
 ## Groups
 #################################################################
 
+garage_doors:
+  name: Garage Doors
+  view: no
+  control: hidden
+  icon: mdi:garage
+  entities:
+    - cover.garage_mqtt
+
+living_room_lights:
+  name: Living Room Lights
+  entities:
+    - light.living_room_lamp
+    - light.living_room_light
+    - light.bathroom_light
+
+kitchen_lights:
+  name: Kitchen Lights
+  entities:
+    - light.kitchen_bar_light
+    - light.kitchen_cabinet_led
+    - light.kitchen_cabinet_light
+    - light.kitchen_dish_light
+    - light.kitchen_light
+    - light.kitchen_refrigerator_light
+    - light.kitchen_sink_light
+    - light.nook_light
+
+downstairs_lights:
+  name: Downstairs Lights
+  entities:
+    - light.living_room_lamp
+    - light.living_room_light
+    - light.bathroom_light
+    - light.kitchen_bar_light
+    - light.kitchen_cabinet_led
+    - light.kitchen_cabinet_light
+    - light.kitchen_dish_light
+    - light.kitchen_light
+    - light.kitchen_refrigerator_light
+    - light.kitchen_sink_light
+    - light.nook_light
+    - light.entry_light
+    - light.dining_room_light
+    - light.stair_light
+
+master_bathroom_lights:
+  name: Master Bathroom Lights
+  entities:
+    - light.master_bathroom_closet
+    - light.master_bathroom_light_one
+    - light.master_bathroom_light_three
+    - light.master_bathroom_light_two
+    - light.master_bathroom_shower
+    - light.master_bathroom_toilet
+    - light.master_bathroom_tub
+
+loft_lights:
+  name: Loft Lights
+  entities:
+    - light.office_light
+    - light.upstairs_hall_light
+    - light.loft_light
+    - light.foosball_light
+
+hobby_room_lights:
+  name: Hobby Room Lights
+  entities:
+    - light.hobby_room_lamp
+    - light.hobby_room_light
+
+upstairs_lights:
+  name: Upstairs Lights
+    - light.master_bathroom_closet
+    - light.master_bathroom_light_one
+    - light.master_bathroom_light_three
+    - light.master_bathroom_light_two
+    - light.master_bathroom_shower
+    - light.master_bathroom_toilet
+    - light.master_bathroom_tub
+    - light.office_light
+    - light.upstairs_hall_light
+    - light.loft_light
+    - light.foosball_light
+    - light.hobby_room_lamp
+    - light.hobby_room_light
+
+
+
 #  Door Bell:
 #    - binary_sensor.ring_front_door_ding
 #    - binary_sensor.ring_front_door_motion

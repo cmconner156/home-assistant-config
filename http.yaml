@@ -1,0 +1,19 @@
+#############################################################
+######### http: config ######################################
+#############################################################
+#
+
+# Secrets are defined in the file secrets.yaml
+ api_password: !secret http_password
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+ base_url: !secret base_url
+# ip_ban_enable and login_attempts_threshold should add security
+ ip_ban_enabled: True
+ login_attempts_threshold: 5
+# trust internal networks
+ use_x_forwarded_for: True
+ trusted_proxies:
+  - !secret trusted_proxies
+ trusted_networks:
+  - !secret trusted_networks
+

@@ -5,6 +5,10 @@
         ##########################################################
         ##  Doors
         ##########################################################
+        #
+cover.garage_mqtt:
+  device_class: garage
+  friendly_name: Conner Garage
 
 #  cover.garage_door:
 #    icon: mdi:garage

@@ -1,0 +1,12 @@
+#################################################################
+## Vacuums
+#################################################################
+
+- platform: xiaomi_miio
+  host: !secret vacuum_upstairs_ip
+  name: upstairs_vacuum
+  token: !secret vacuum_upstairs_token
+- platform: xiaomi_miio
+  host: !secret vacuum_downstairs_ip
+  name: downstairs_vacuum
+  token: !secret vacuum_downstairs_token

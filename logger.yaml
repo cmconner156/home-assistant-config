@@ -2,8 +2,12 @@
 ## Logging
 ###################################
 
-logger:
-  default: info
-  logs:
-    homeassistant.components.mqtt: warn
-    
+default: info
+logs:
+  homeassistant.components.mqtt: debug
+#  homeassistant.components.python_script: debug
+  custom_components.ha_mqtt_bridge_sync: debug
+  custom_components.sonoff_garage_sync: debug
+  homeassistant.core: debug
+  homeassistant.components.media_player: debug 
+  homeassistant.components.http: debug

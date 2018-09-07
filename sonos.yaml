@@ -1,0 +1,11 @@
+#################################################################
+## Sonos NOT USED USING MEDIA PLAYER
+#################################################################
+
+#- media_player:
+#    hosts:
+#      - !secret sonos_office1 # Office1
+#      - !secret sonos_office2 # Office2
+#      - !secret sonos_bedroom # Bedroom
+#      - !secret sonos_living # Living Room
+
